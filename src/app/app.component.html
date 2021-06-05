@@ -2,8 +2,21 @@
   {{title}}
 </h1>
 
-<h2>{{book.title}}</h2>
-<p>{{book.desc}}</p>
+Libros:
+<ul>
+  <li *ngFor="let book of books; let i = index">
+    <h2 [style]="{'font-size':book.price>=9 ? '14px' : '11px' }"
+        [class]="{'error': book.price <= 9, 'ok': book.price > 9  }">
+      {{book.title}}
+    </h2>
+    <p>{{book.desc}}</p>
 
-<p>Autor: {{book.author}}</p>
-<p>Precio: {{book.price}}€</p>
+    <p>Autor: {{book.author}}</p>
+    <p>Precio: {{book.price}}€</p>
+
+    <img [src]="'assets/images/'+ book.image">
+
+    <p [hidden]="!book.pdfonly">Solo en formato digital</p>
+    <p [hidden]="book.pdfonly">Solo en formato fisico</p>
+  </li>
+</ul>
