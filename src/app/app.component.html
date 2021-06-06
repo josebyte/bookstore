@@ -7,12 +7,13 @@ Libros:
   <li *ngFor="let book of books; let i = index">
     <h2 [style]="{'font-size':book.price>=9 ? '14px' : '11px' }"
         [class]="{'error': book.price <= 9, 'ok': book.price > 9  }">
-      {{book.title}}
+      {{ book.title | uppercase | copyright}}
     </h2>
     <p>{{book.desc}}</p>
 
     <p>Autor: {{book.author}}</p>
-    <p>Precio: {{book.price}}€</p>
+    <p>Precio: {{book.price | currency:'EUR':'symbol':'1.2-2':'es-ES' }}</p>
+    <p>{{book.publish_date | date: 'dd/MM/yyyy'}}</p>
 
     <img [src]="'assets/images/'+ book.image">
 
